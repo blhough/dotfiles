@@ -1,0 +1,55 @@
+[user]
+	name = Benjamin Hough
+	email = bhough322@gmail.com
+[core]
+	editor = vim
+	pager = delta
+[diff]
+	colorMoved = default
+[delta]
+	paging = always
+	line-numbers = true
+	file-style = "cyan auto"
+	file-decoration-style = "cyan ul"
+	hunk-header-file-style = "cyan"
+	hunk-header-line-number-style = "magenta"
+	hunk-header-decoration-style = "cyan ul"
+[interactive]
+    diffFilter = delta --color-only
+[alias]
+	current = branch --show-current
+	c = "!f() { b=\"$(git branch --show-current)\"; git commit -m \"${b} $1\" ; }; f"
+	cm = commit -m
+	cam = commit -am
+	amend = commit --amend --no-edit
+	ap = add -p
+	spp = !git stash && git pull -r && git stash pop
+	ss = !git status -s && git log -3 --pretty=format:'%C(yellow)%h %Creset%<(60,trunc)%s %C(cyan)[%<(10,trunc)%aN]' --decorate
+	lss = log --graph --pretty=format:"%C(yellow)%h\\ %Creset%<(60,trunc)%s\\ %C(cyan)[%<(10,trunc)%aN]%Cred%d" --decorate
+	ls = log --graph --pretty=format:"%C(yellow)%h\\ %Creset%<(60,trunc)%s\\ %C(cyan)[%<(10,trunc)%aN]%Cred%d" --decorate -15
+	ldd = log --graph --date=human --pretty=format:"%cd\\ %C(yellow)%h\\ %Creset%<(60,trunc)%s\\ %C(cyan)[%<(10,trunc)%aN]" --decorate
+	ld = log --graph --date=human --pretty=format:"%cd\\ %C(yellow)%h\\ %Creset%<(60,trunc)%s\\ %C(cyan)[%<(10,trunc)%aN]" --decorate -15
+	lll = log --pretty=format:"%C(yellow)%h\\ %Creset%<(60,trunc)%s\\ %C(cyan)[%<(10,trunc)%aN]" --decorate --stat
+	ll = log  --pretty=format:"%C(yellow)%h\\ %Creset%<(60,trunc)%s\\ %C(cyan)[%<(10,trunc)%aN]" --decorate --stat -3
+	ffm = merge --ff-only
+	ff = pull --ff-only
+	fpush = push --force-with-lease
+	fpull = !git fetch && git reset --hard FETCH_HEAD
+	rf = rebase -i FETCH_HEAD
+	mt = !git ss && git mergetool
+	gcon = config --global -e
+	la = "!git config -l | grep alias | cut -c 7-"
+	sha = log -1 --pretty=%H
+	om = "!code -n $(git diff --name-only)"
+	os = "!code -n $(git diff --staged --name-only)"
+	wip = !git add . && CURRENT=$(git current) && git commit -am \"$CURRENT WIP\"
+	wips = !git add . && git commit -am \"WIP [skip ci]\"
+	lb = for-each-ref --count=20 --sort=-committerdate refs/heads/ --format='%(HEAD) %(align:15)%(refname:short)%(end)  %(align:20)(%(color:green)%(committerdate:relative)%(color:reset))%(end) %(subject)'
+	lbb = "!(git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(align:15)%(refname:short)%(end)  %(align:20)(%(color:green)%(committerdate:relative)%(color:reset))%(end) %(subject)' --color=always) | less -R"
+[color "diff"]
+	meta = cyan
+	frag = magenta
+[mergetool]
+	keepBackup = false
+[rerere]
+	enabled = true

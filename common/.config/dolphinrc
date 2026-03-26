@@ -1,6 +1,21 @@
+[CompactMode]
+PreviewSize=240
+
+[DetailsMode]
+PreviewSize=16
+RightPadding=0
+
+[ExtractDialog]
+2 screens: Height=864
+2 screens: Width=1832
+DirHistory[$e]=$HOME/Downloads/,/opt/
+
 [General]
 Version=202
 ViewPropsTimestamp=2025,11,19,20,25,29.733
+
+[IconsMode]
+PreviewSize=256
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false
